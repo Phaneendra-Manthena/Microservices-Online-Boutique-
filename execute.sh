@@ -18,7 +18,7 @@ directories=(
     /root/Microservices-Online-Boutique-/Redis
 )
 
-# Loop through each directory and execute the kubectl apply command
+# Loop through each directory and execute the kubectl apply commands
 for dir in "${directories[@]}"
 do
   echo "Processing directory: $dir"
