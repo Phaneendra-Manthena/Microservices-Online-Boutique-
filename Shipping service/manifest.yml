@@ -25,10 +25,10 @@ spec:
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "250m"
         ports:
         - containerPort: 50051
-       envFrom:
+        envFrom:
             - configMapRef:
                 name: shipping-config
         
