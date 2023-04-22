@@ -20,8 +20,8 @@ spec:
         app: currencyservice
     spec:
       containers:
-      - name: Currency
-        image: gcr.io/google-samples/microservices-demo/currencyservice
+      - name: currency-service
+        image: gcr.io/google-samples/microservices-demo/currencyservice:v0.2.3
         resources:
           limits:
             memory: "128Mi"

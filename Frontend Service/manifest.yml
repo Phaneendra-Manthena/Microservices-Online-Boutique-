@@ -27,8 +27,8 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
-        image: gcr.io/google-samples/microservices-demo/frontend
+      - name: frontend-service
+        image: gcr.io/google-samples/microservices-demo/frontend:v0.2.3
         resources:
           limits:
             memory: "128Mi"

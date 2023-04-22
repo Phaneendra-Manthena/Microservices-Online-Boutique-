@@ -20,8 +20,8 @@ spec:
         app: cartservice
     spec:
       containers:
-      - name: cartservice
-        image: gcr.io/google-samples/microservices-demo/cartservice
+      - name: cart-service
+        image: gcr.io/google-samples/microservices-demo/cartservice:v0.2.3
         resources:
           limits:
             memory: "128Mi"

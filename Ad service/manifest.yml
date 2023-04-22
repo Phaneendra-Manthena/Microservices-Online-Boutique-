@@ -21,8 +21,8 @@ spec:
         app: adservice
     spec:
       containers:
-      - name: adservice
-        image: gcr.io/google-samples/microservices-demo/adservice
+      - name: ad-service
+        image: phani997/adservice:v1
         resources:
           limits:
             memory: "128Mi"

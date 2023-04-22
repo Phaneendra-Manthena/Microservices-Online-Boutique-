@@ -21,8 +21,8 @@ spec:
         app: recommendationservice
     spec:
       containers:
-      - name: Recommendation service
-        image: gcr.io/google-samples/microservices-demo/recommendationservice
+      - name: recommendation-service
+        image: gcr.io/google-samples/microservices-demo/recommendationservice:v0.2.3
         resources:
           limits:
             memory: "128Mi"

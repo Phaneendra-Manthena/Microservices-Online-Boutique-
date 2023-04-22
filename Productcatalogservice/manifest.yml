@@ -20,8 +20,8 @@ spec:
         app: productcatalogservice
     spec:
       containers:
-      - name: ProductCatlaog
-        image: gcr.io/google-samples/microservices-demo/productcatalogservice
+      - name: productcatlaog-service
+        image: gcr.io/google-samples/microservices-demo/productcatalogservice:v0.2.3
         resources:
           limits:
             memory: "128Mi"

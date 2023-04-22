@@ -20,8 +20,8 @@ spec:
         app: shippingservice
     spec:
       containers:
-      - name: Shipping
-        image: gcr.io/google-samples/microservices-demo/shippingservice
+      - name: shipping-service
+        image: gcr.io/google-samples/microservices-demo/shippingservice:v0.2.3
         resources:
           limits:
             memory: "128Mi"
