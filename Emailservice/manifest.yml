@@ -19,8 +19,8 @@ spec:
         app: emailservice
     spec:
       containers:
-      - name: Email service
-        image: gcr.io/google-samples/microservices-demo/emailservice
+      - name: email service
+        image: gcr.io/google-samples/microservices-demo/emailservice:v0.2.3
         resources:
           limits:
             memory: "128Mi"
