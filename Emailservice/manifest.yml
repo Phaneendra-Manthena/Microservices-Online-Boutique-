@@ -19,7 +19,7 @@ spec:
         app: emailservice
     spec:
       containers:
-      - name: email service
+      - name: email-service
         image: gcr.io/google-samples/microservices-demo/emailservice:v0.2.3
         resources:
           limits:
