@@ -4,10 +4,8 @@ FROM base as builder
 
 # Some packages (e.g. @google-cloud/profiler) require additional
 # deps for post-install scripts
-RUN apk add --update --no-cache \
-    python \
-    make \
-    g++
+RUN apk add --no-cache python make g++
+
 
 WORKDIR /usr/src/app
 
