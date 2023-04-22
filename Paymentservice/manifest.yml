@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: Paymentservice
-        image: gcr.io/google-samples/microservices-demo/paymentservice:v0.2.3
+        image: gcr.io/google-samples/microservices-demo/paymentservice
         resources:
           limits:
             memory: "128Mi"
