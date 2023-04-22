@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: emailservice
+  labels:
+    name: emailservice
+    tier: app
+spec:
+  containers:
+  - name: emailservice
+    imagePullPolicy: Always
+    image: phani997/emailservice:v1
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "100m"
+        memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emailservice
+spec:
+  selector:
+    name: emailservice
+    tier: app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
