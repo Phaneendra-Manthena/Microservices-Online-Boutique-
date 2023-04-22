@@ -14,10 +14,10 @@ spec:
       containers:
       - name: redis-cart
         image: redis:alpine
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "150m"
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "150m"
         ports:
         - containerPort: 6379
         volumeMounts:

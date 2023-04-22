@@ -29,9 +29,9 @@ spec:
       - name: checkout-service
         image: gcr.io/google-samples/microservices-demo/checkoutservice:v0.2.3
         resources:
-          limits:
-            memory: "128Mi"
-            cpu: "250m"
+          # limits:
+          #   memory: "128Mi"
+          #   cpu: "250m"
         ports:
         - containerPort: 5050
         envFrom:
