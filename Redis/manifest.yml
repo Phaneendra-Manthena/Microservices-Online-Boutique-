@@ -20,6 +20,12 @@ spec:
             cpu: "250m"
         ports:
         - containerPort: 6379
+        volumeMounts:
+        - mountPath: /data
+          name: redis-data  
+      volumes:
+      - name: redis-data
+        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
