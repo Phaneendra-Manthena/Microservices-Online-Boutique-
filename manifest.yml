@@ -1,33 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shipping-config
+data:
+  PORT: "50051"
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 
+  name: shippingservice
 spec:
   selector:
     matchLabels:
-      app: 
+      app: shippingservice
   template:
     metadata:
       labels:
-        app: 
+        app: shippingservice
     spec:
       containers:
-      - name: 
-        image: <Image>
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+      - name: shipping-service
+        image: gcr.io/google-samples/microservices-demo/shippingservice:v0.2.3
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "250m"
         ports:
-        - containerPort: <Port>
+        - containerPort: 50051
+        envFrom:
+            - configMapRef:
+                name: shipping-config
+        
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: 
+  name: shippingservice
 spec:
   selector:
-    app: 
+    app: shippingservice
   ports:
-  - port: <Port>
-    targetPort: <Target Port>
+  - port: 50051
+    targetPort: 50051
