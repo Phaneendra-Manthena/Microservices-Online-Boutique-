@@ -6,7 +6,7 @@ current_dir=$(pwd)
 # Define the list of directories to process
 directories=(
     /root/Microservices-Online-Boutique-/Paymentservice
-    /root/Microservices-Online-Boutique-/Shipping service
+    /root/Microservices-Online-Boutique-/shippingservice
     /root/Microservices-Online-Boutique-/Productcatalogservice
     /root/Microservices-Online-Boutique-/adservice
     /root/Microservices-Online-Boutique-/Currencyservice
