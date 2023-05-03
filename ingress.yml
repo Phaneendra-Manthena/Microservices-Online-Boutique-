@@ -49,18 +49,18 @@ spec:
                 name: paymentservice
                 port:
                   number: 50051
-          - path: /productcatalogservice
+          - path: /productcatalog
             pathType: Prefix
             backend:
               service:
-                name: productcatalogservice
+                name: productcatalog
                 port:
                   number: 3550
-          - path: /recommendationservice
+          - path: /recommend
             pathType: Prefix
             backend:
               service:
-                name: recommendationservice
+                name: recommend
                 port:
                   number: 8080
           - path: /shippingservice 
