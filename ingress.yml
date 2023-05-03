@@ -7,13 +7,13 @@ spec:
     - host: my-app.com
       http:
         paths:
-          - path: /adservice
+          - path: /frontend
             pathType: Prefix
             backend:
               service:
-                name: adservice
+                name: frontend
                 port:
-                  number: 9555
+                  number: 80
           - path: /cartservice
             pathType: Prefix
             backend:
@@ -70,5 +70,12 @@ spec:
                 name: shippingservice 
                 port:
                   number: 50051
+          - path: /adservice
+            pathType: Prefix
+            backend:
+              service:
+                name: adservice
+                port:
+                  number: 9555
 
 
