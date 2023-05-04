@@ -10,7 +10,7 @@ spec:
   containers:
   - name: productcatalog
     imagePullPolicy: Always
-    image: phani997/productcatalogservice:v1
+    image: phani997/product:latest
     resources:
       requests:
         cpu: "200m"
