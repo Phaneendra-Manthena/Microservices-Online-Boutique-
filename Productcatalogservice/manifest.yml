@@ -1,33 +1,44 @@
----
 apiVersion: v1
-kind: Pod
+kind: ConfigMap
 metadata:
-  name: productcatalog
-  labels:
-    name: productcatalog
-    tier: app
+  name: product-config
+data:
+  PORT: "3550"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogservice
 spec:
-  containers:
-  - name: productcatalog
-    imagePullPolicy: Always
-    image: phani997/product:latest
-    resources:
-      requests:
-        cpu: "200m"
-        memory: "256Mi"
-      limits:
-        cpu: "200m"
-        memory: "512Mi"
+  selector:
+    matchLabels:
+      app: productcatalogservice
+  template:
+    metadata:
+      labels:
+        app: productcatalogservice
+    spec:
+      containers:
+      - name: productcatlaog-service
+        image: gcr.io/google-samples/microservices-demo/productcatalogservice:v0.2.3
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "250m"
+        ports:
+        - containerPort: 3550
+        envFrom:
+            - configMapRef:
+                name: product-config
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: productcatalog
+  name: productcatalogservice
 spec:
   selector:
-    name:  productcatalog
-    tier: app
+    app: productcatalogservice
   ports:
-    - protocol: TCP
-      port: 3550
-      targetPort: 3550
+  - port: 3550
+    targetPort: 3550
