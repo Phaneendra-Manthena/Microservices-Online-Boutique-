@@ -1,33 +1,37 @@
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: recom-config
 data:
- PRODUCT_CATALOG_SERVICE_ADDR: productcatalog:3550
+  PRODUCT_CATALOG_SERVICE_ADDR: productcatalog:3550
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: recommend
-  labels:
-    name: recommend
-    tier: app
 spec:
-  containers:
-  - name: recommend
-    imagePullPolicy: Always
-    image: phani997/recommendationservice:v1
-    envFrom:
-    - configMapRef:
-        name: recom-config
-    resources:
-      requests:
-        cpu: "200m"
-        memory: "256Mi"
-      limits:
-        cpu: "200m"
-        memory: "512Mi"
+  selector:
+    matchLabels:
+      app: recommend
+  template:
+    metadata:
+      labels:
+        app: recommend
+    spec:
+      containers:
+        - name: recommend
+          imagePullPolicy: Always
+          image: phani997/recommendationservice:v1
+          envFrom:
+            - configMapRef:
+                name: recom-config
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
 ---
 apiVersion: v1
 kind: Service
@@ -35,8 +39,7 @@ metadata:
   name: recommend
 spec:
   selector:
-    name: recommend
-    tier: app
+    app: recommend
   ports:
     - protocol: TCP
       port: 80
