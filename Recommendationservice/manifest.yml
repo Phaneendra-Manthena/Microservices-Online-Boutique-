@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: recom-config
 data:
-  PRODUCT_CATALOG_SERVICE_ADDR: productcatalog:3550
+  PRODUCT_CATALOG_SERVICE_ADDR: productcatalogservice:3550
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -21,7 +21,7 @@ spec:
       containers:
         - name: recommend
           imagePullPolicy: Always
-          image: phani997/recommendationservice:v1
+          image: gcr.io/google-samples/microservices-demo/recommendationservice:v0.2.3
           envFrom:
             - configMapRef:
                 name: recom-config
