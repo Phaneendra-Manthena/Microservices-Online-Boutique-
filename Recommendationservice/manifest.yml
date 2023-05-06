@@ -5,8 +5,8 @@ metadata:
 data:
   PRODUCT_CATALOG_SERVICE_ADDR: productcatalog:3550
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: recommend
 spec:
