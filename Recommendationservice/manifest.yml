@@ -1,46 +1,45 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: recom-config
+  name: recommend-config
 data:
-  PRODUCT_CATALOG_SERVICE_ADDR: productcatalogservice:3550
+  PORT: "8080"
+  PRODUCT_CATALOG_SERVICE_ADDR: "productcatalogservice:3550"
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: recommend
+  name: recommendationservice
 spec:
   selector:
     matchLabels:
-      app: recommend
+      app: recommendationservice
   template:
     metadata:
       labels:
-        app: recommend
+        app: recommendationservice
     spec:
       containers:
-        - name: recommend
-          imagePullPolicy: Always
-          image: gcr.io/google-samples/microservices-demo/recommendationservice:v0.2.3
-          envFrom:
+      - name: recommendation-service
+        image: gcr.io/google-samples/microservices-demo/recommendationservice:v0.2.3
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 8080
+        envFrom:
             - configMapRef:
-                name: recom-config
-          resources:
-            requests:
-              cpu: "200m"
-              memory: "256Mi"
-            limits:
-              cpu: "200m"
-              memory: "512Mi"
+                name: recommend-config       
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: recommend
+  name: recommendationservice
 spec:
   selector:
-    app: recommend
+    app: recommendationservice
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+  - port: 8080
+    targetPort: 8080

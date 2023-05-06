@@ -20,12 +20,12 @@ spec:
         app: productcatalogservice
     spec:
       containers:
-      - name: productcatlaog-service
+      - name: productcatalog-service
         image: gcr.io/google-samples/microservices-demo/productcatalogservice:v0.2.3
-        # resources:
-        #   limits:
-        #     memory: "128Mi"
-        #     cpu: "250m"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
         ports:
         - containerPort: 3550
         envFrom:
@@ -42,3 +42,6 @@ spec:
   ports:
   - port: 3550
     targetPort: 3550
+
+
+
