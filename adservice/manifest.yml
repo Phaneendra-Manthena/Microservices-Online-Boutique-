@@ -5,6 +5,9 @@ metadata:
 data:
   PORT: "9555"
   REDIS_ADDR: "redis-cart:6379"
+  DISABLE_TRACING: "1"
+  DISABLE_STATS: "1"
+  JAEGER_SERVICE_ADDR: "jaeger-collector:14268"
 
 ---
 apiVersion: apps/v1

@@ -4,6 +4,9 @@ metadata:
   name: currency-config
 data:
   PORT: "7000"
+  DISABLE_TRACING: "1"
+  DISABLE_PROFILER: "1"
+  DISABLE_DEBUGGER: "1"
 
 ---
 apiVersion: apps/v1
