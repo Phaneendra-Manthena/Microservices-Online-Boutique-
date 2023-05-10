@@ -37,12 +37,12 @@ spec:
                 name: product-config
         readinessProbe:
           tcpSocket:
-            port: 9555
+            port: 3550
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
           tcpSocket:
-            port: 9555
+            port: 3550
           initialDelaySeconds: 15
           periodSeconds: 20
 ---
