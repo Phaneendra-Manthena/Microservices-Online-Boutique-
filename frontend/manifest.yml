@@ -11,9 +11,9 @@ data:
   SHIPPING_SERVICE_ADDR: "shippingservice:50051"
   CHECKOUT_SERVICE_ADDR: "checkoutservice:5050"
   AD_SERVICE_ADDR: "adservice:9555"
-  DISABLE_TRACING: "1"
-  DISABLE_PROFILER: "1"
-  JAEGER_SERVICE_ADDR: "jaeger-collector:14268"
+  # DISABLE_TRACING: "1"
+  # DISABLE_PROFILER: "1"
+  # JAEGER_SERVICE_ADDR: "jaeger-collector:14268"
 
 ---
 apiVersion: apps/v1
@@ -42,15 +42,21 @@ spec:
             - configMapRef:
                 name: frontend-config
         readinessProbe:
-          initialDelaySeconds: 20
-          periodSeconds: 15
-          exec:
-            command: ["/bin/grpc_health_probe", "-addr=:9555"]
+            initialDelaySeconds: 10
+            httpGet:
+              path: "/_healthz"
+              port: 8080
+              httpHeaders:
+              - name: "Cookie"
+                value: "shop_session-id=x-readiness-probe"
         livenessProbe:
-          initialDelaySeconds: 20
-          periodSeconds: 15
-          exec:
-            command: ["/bin/grpc_health_probe", "-addr=:9555"]        
+            initialDelaySeconds: 10
+            httpGet:
+              path: "/_healthz"
+              port: 8080
+              httpHeaders:
+              - name: "Cookie"
+                value: "shop_session-id=x-liveness-probe"      
 ---
 apiVersion: v1
 kind: Service

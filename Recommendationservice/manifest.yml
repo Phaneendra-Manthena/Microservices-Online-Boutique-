@@ -5,9 +5,9 @@ metadata:
 data:
   PORT: "8080"
   PRODUCT_CATALOG_SERVICE_ADDR: "productcatalogservice:3550"
-  DISABLE_TRACING: "1"
-  DISABLE_PROFILER: "1"
-  DISABLE_DEBUGGER: "1"
+  # DISABLE_TRACING: "1"
+  # DISABLE_PROFILER: "1"
+  # DISABLE_DEBUGGER: "1"
 
 ---
 apiVersion: apps/v1
