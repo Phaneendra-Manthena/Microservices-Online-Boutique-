@@ -11,6 +11,9 @@ data:
   SHIPPING_SERVICE_ADDR: "shippingservice:50051"
   CHECKOUT_SERVICE_ADDR: "checkoutservice:5050"
   AD_SERVICE_ADDR: "adservice:9555"
+  # DISABLE_TRACING: "1"
+  # DISABLE_PROFILER: "1"
+  # JAEGER_SERVICE_ADDR: "jaeger-collector:14268"
 
 ---
 apiVersion: apps/v1
@@ -38,6 +41,17 @@ spec:
         envFrom:
             - configMapRef:
                 name: frontend-config
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20    
+            
 ---
 apiVersion: v1
 kind: Service
@@ -48,6 +62,7 @@ spec:
   selector:
     app: frontend
   ports:
-  - port: 8080
+  - name: grpc
+    port: 8080
     targetPort: 8080
     

@@ -10,6 +10,10 @@ data:
   EMAIL_SERVICE_ADDR: "emailservice:5000"
   CURRENCY_SERVICE_ADDR: "currencyservice:7000"
   CART_SERVICE_ADDR: "cartservice:7070"
+  # DISABLE_TRACING: "1"
+  # DISABLE_PROFILER: "1"
+  # DISABLE_STATS: "1"
+  # JAEGER_SERVICE_ADDR: "jaeger-collector:14268"
 
 ---
 apiVersion: apps/v1
@@ -37,6 +41,16 @@ spec:
         envFrom:
             - configMapRef:
                 name: checkout-config
+        readinessProbe:
+          tcpSocket:
+            port: 5050
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 5050
+          initialDelaySeconds: 15
+          periodSeconds: 20 
 ---
 apiVersion: v1
 kind: Service
@@ -46,6 +60,7 @@ spec:
   selector:
     app: checkoutservice
   ports:
-  - port: 5050
-    targetPort: 5050
+   - name: grpc
+     port: 5050
+     targetPort: 5050
 

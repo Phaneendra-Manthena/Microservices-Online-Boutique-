@@ -5,6 +5,9 @@ metadata:
 data:
   PORT: "8080"
   PRODUCT_CATALOG_SERVICE_ADDR: "productcatalogservice:3550"
+  # DISABLE_TRACING: "1"
+  # DISABLE_PROFILER: "1"
+  # DISABLE_DEBUGGER: "1"
 
 ---
 apiVersion: apps/v1
@@ -31,7 +34,17 @@ spec:
         - containerPort: 8080
         envFrom:
             - configMapRef:
-                name: recommend-config       
+                name: recommend-config   
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20        
 ---
 apiVersion: v1
 kind: Service
@@ -41,5 +54,6 @@ spec:
   selector:
     app: recommendationservice
   ports:
-  - port: 8080
+  - name: grpc
+    port: 8080
     targetPort: 8080
