@@ -54,6 +54,7 @@ spec:
   selector:
     app: adservice
   ports:
-  - port: 9555
+  - name: grpc
+    port: 9555
     targetPort: 9555
 

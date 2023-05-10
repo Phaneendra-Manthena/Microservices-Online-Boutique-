@@ -54,8 +54,7 @@ spec:
   selector:
     app: productcatalogservice
   ports:
-  - port: 3550
+  - name: grpc
+    port: 3550
     targetPort: 3550
-
-
 

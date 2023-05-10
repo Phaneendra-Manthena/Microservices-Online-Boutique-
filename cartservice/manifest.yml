@@ -50,6 +50,7 @@ spec:
   selector:
     app: cartservice
   ports:
-  - port: 7070
+  - name: grpc 
+    port: 7070
     targetPort: 7070
 

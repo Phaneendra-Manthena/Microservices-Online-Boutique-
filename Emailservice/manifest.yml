@@ -51,5 +51,6 @@ spec:
   selector:
     app: emailservice
   ports:
-  - port: 8080
+  - name: grpc
+    port: 8080
     targetPort: 8080
