@@ -33,7 +33,7 @@ spec:
                 name: cart-config
         readinessProbe:
           tcpSocket:
-            port: 7070
+            port: 7071
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
