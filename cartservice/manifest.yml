@@ -38,7 +38,7 @@ spec:
           periodSeconds: 10
         livenessProbe:
           tcpSocket:
-            port: 7071
+            port: 7070
           initialDelaySeconds: 15
           periodSeconds: 20
 ---
