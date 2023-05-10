@@ -23,19 +23,19 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: redis-data  
+        readinessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 15
+          periodSeconds: 20
       volumes:
       - name: redis-data
         emptyDir: {}
-        readinessProbe:
-      tcpSocket:
-        port: 8080
-      initialDelaySeconds: 5
-      periodSeconds: 10
-    livenessProbe:
-      tcpSocket:
-        port: 8080
-      initialDelaySeconds: 15
-      periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
@@ -47,4 +47,3 @@ spec:
   ports:
   - port: 6379
     targetPort: 6379
-
