@@ -54,14 +54,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: productcatalog
+                name: productcatalogservice
                 port:
                   number: 3550
           - path: "/"
             pathType: Prefix
             backend:
               service:
-                name: recommend
+                name: recommendationservice
                 port:
                   number: 8080
           - path: "/"
