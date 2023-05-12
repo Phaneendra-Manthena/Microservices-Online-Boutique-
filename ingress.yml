@@ -3,74 +3,75 @@ kind: Ingress
 metadata:
   name: ingress
 spec:
-  rules:
-    - host: my-app.com
+ ingressClassName: nginx
+ rules:
+    - host: "foo.bar.com"
       http:
         paths:
-          - path: /frontend
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: frontend
                 port:
                   number: 80
-          - path: /cartservice
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: cartservice
                 port:
                   number: 7070
-          - path: /checkoutservice
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: checkoutservice
                 port:
                   number: 5050
-          - path: /currencyservice
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: currencyservice
                 port:
                   number: 7000
-          - path: /emailservice
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: emailservice
                 port:
                   number: 8080
-          - path: /paymentservice
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: paymentservice
                 port:
                   number: 50051
-          - path: /productcatalog
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: productcatalog
                 port:
                   number: 3550
-          - path: /recommend
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: recommend
                 port:
                   number: 8080
-          - path: /shippingservice 
+          - path: "/"
             pathType: Prefix
             backend:
               service:
                 name: shippingservice 
                 port:
                   number: 50051
-          - path: /adservice
+          - path: "/"
             pathType: Prefix
             backend:
               service:
