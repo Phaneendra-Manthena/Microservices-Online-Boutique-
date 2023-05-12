@@ -15,14 +15,14 @@ spec:
                 name: frontend
                 port:
                   number: 8080
-          - path: "/"
+          - path: "/crt"
             pathType: Prefix
             backend:
               service:
                 name: cartservice
                 port:
                   number: 7070
-          - path: "/"
+          - path: "/check"
             pathType: Prefix
             backend:
               service:
