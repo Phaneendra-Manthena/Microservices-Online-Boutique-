@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: email-config
+  namespace: default
 data:
   PORT: "8080"
   # DISABLE_TRACING: "1"
@@ -11,6 +12,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: emailservice
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -47,6 +49,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: emailservice
+  namespace: default
 spec:
   selector:
     app: emailservice
