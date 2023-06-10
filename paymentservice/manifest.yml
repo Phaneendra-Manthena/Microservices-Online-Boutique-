@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payment-config
+  namespace: default
+data:
+  PORT: "50051"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: paymentservice
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+    spec:
+      containers:
+      - name: payment-service
+        image: gcr.io/google-samples/microservices-demo/paymentservice:v0.2.3
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "250m"
+        ports:
+        - containerPort: 50051
+        envFrom:
+            - configMapRef:
+                name: payment-config
+        readinessProbe:
+          tcpSocket:
+            port: 50051
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 50051
+          initialDelaySeconds: 15
+          periodSeconds: 20       
+       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: paymentservice
+  namespace: default
+spec:
+  selector:
+    app: paymentservice
+  ports:
+  - name: grpc
+    port: 50051
+    targetPort: 50051

@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: currency-config
+data:
+  PORT: "7000"
+  # DISABLE_TRACING: "1"
+  # DISABLE_PROFILER: "1"
+  # DISABLE_DEBUGGER: "1"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currencyservice
+spec:
+  selector:
+    matchLabels:
+      app: currencyservice
+  template:
+    metadata:
+      labels:
+        app: currencyservice
+    spec:
+      containers:
+      - name: currency-service
+        image: gcr.io/google-samples/microservices-demo/currencyservice:v0.2.3
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "250m"
+        ports:
+        - containerPort: 7000
+        envFrom:
+            - configMapRef:
+                name: currency-config
+        readinessProbe:
+          tcpSocket:
+            port: 7000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 7000
+          initialDelaySeconds: 15
+          periodSeconds: 20   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: currencyservice
+spec:
+  selector:
+    app: currencyservice
+  ports:
+  - name: grpc
+    port: 7000
+    targetPort: 7000
+
